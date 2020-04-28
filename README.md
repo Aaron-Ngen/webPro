@@ -1,2 +1,2 @@
 # webPro
-This is a web-related test project
+ - [x] Redis缓存，注解AOP应用
