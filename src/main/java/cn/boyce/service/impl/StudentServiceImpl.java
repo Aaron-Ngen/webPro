@@ -35,6 +35,9 @@ public class StudentServiceImpl implements StudentService {
     @Value("${REDIS_KEY}")
     private String REDIS_KEY;
 
+    @Value("${REDIS_TIME_OUT}")
+    private Integer REDIS_TIME_OUT;
+
     @Override
     public Response getStudentInfo(Integer sno) {
         List<Student> list = new ArrayList<>();
@@ -59,8 +62,8 @@ public class StudentServiceImpl implements StudentService {
                 list.add(stu.get());
 
                 log.info("缓存写入！");
-                redisTemplate.opsForHash().put(REDIS_KEY, sno.toString(), student);
-                redisTemplate.expire(REDIS_KEY, 2 * 60, TimeUnit.SECONDS);
+                redisTemplate.opsForHash().put(REDIS_KEY, sno.toString(), stu.get());
+                redisTemplate.expire(REDIS_KEY, REDIS_TIME_OUT, TimeUnit.MINUTES);
                 log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
             }
         }
@@ -75,8 +78,8 @@ public class StudentServiceImpl implements StudentService {
         studentDao.saveAndFlush(student);
 
         log.info("写入缓存！");
-        redisTemplate.opsForHash().put(REDIS_KEY, String.valueOf(student.getSno()), student);
-        redisTemplate.expire(REDIS_KEY, 2 * 60, TimeUnit.SECONDS);
+        redisTemplate.opsForHash().put(REDIS_KEY, student.getSno().toString(), student);
+        redisTemplate.expire(REDIS_KEY, REDIS_TIME_OUT, TimeUnit.MINUTES);
         log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
         return Response.successWithoutData("信息添加成功！");
     }
@@ -101,8 +104,8 @@ public class StudentServiceImpl implements StudentService {
         studentDao.saveAndFlush(student);
 
         log.info("缓存更新！");
-        redisTemplate.opsForHash().put(REDIS_KEY, student.getSno(), student);
-        redisTemplate.expire(REDIS_KEY, 2 * 60, TimeUnit.SECONDS);
+        redisTemplate.opsForHash().put(REDIS_KEY, student.getSno().toString(), student);
+        redisTemplate.expire(REDIS_KEY, REDIS_TIME_OUT, TimeUnit.MINUTES);
         log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
         return Response.successWithoutData("信息更新成功！");
     }

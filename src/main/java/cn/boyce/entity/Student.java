@@ -3,6 +3,7 @@ package cn.boyce.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 
 /**
  * @Author: Yuan Baiyu
@@ -21,7 +22,7 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int sno;
+    private Integer sno;
 
     private int age;
 
