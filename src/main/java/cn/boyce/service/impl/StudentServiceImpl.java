@@ -41,8 +41,6 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Response getStudentInfo(Integer sno) {
         List<Student> list = new ArrayList<>();
-
-        long startTime = System.currentTimeMillis();
         if (null == sno) {
             Object obj = redisTemplate.opsForHash().entries(REDIS_KEY);
             if (null == obj) {
@@ -67,7 +65,6 @@ public class StudentServiceImpl implements StudentService {
                 log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
             }
         }
-        log.info("cost time :{}", System.currentTimeMillis() - startTime);
         return Response.success(list);
     }
 
