@@ -4,7 +4,6 @@ import cn.boyce.dao.StudentDao;
 import cn.boyce.entity.Response;
 import cn.boyce.entity.Student;
 import cn.boyce.service.StudentService;
-import cn.boyce.util.IdempotentApi;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,9 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * @Author: Yuan Baiyu
@@ -40,24 +41,33 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Response getStudentInfo(Integer sno) {
-        List<Student> list = new ArrayList<>();
+        List<Student> result = new ArrayList<>();
         if (null == sno) {
-            Object obj = redisTemplate.opsForHash().entries(REDIS_KEY);
-            if (null == obj) {
-                return Response.success(studentDao.findAll());
-            } else {
-                return Response.success(obj);
+            log.info("缓存获取！");
+            result = redisTemplate.opsForHash().entries(REDIS_KEY).values().stream()
+                    .map(o -> (Student) o).collect(Collectors.toList());
+            result.sort(Comparator.comparing(Student::getSno));
+            if (result.size() == 0) {
+                log.info("缓存为空，数据库查询！");
+                result = studentDao.findAll();
+                log.info("缓存写入！");
+                redisTemplate.opsForHash().putAll(REDIS_KEY, result.stream()
+                        .collect(Collectors.toMap(x -> x.getSno().toString(), x -> x)));
+                redisTemplate.expire(REDIS_KEY, REDIS_TIME_OUT, TimeUnit.MINUTES);
+                log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
             }
+            return Response.success(result);
         }
+
         Student student = (Student) redisTemplate.opsForHash().get(REDIS_KEY, sno.toString());
         if (null != student) {
             log.info("缓存获取！");
-            list.add(student);
+            result.add(student);
         } else {
             log.info("数据库查询！");
             Optional<Student> stu = studentDao.findById(sno);
             if (stu.isPresent()) {
-                list.add(stu.get());
+                result.add(stu.get());
 
                 log.info("缓存写入！");
                 redisTemplate.opsForHash().put(REDIS_KEY, sno.toString(), stu.get());
@@ -65,7 +75,7 @@ public class StudentServiceImpl implements StudentService {
                 log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
             }
         }
-        return Response.success(list);
+        return Response.success(result);
     }
 
     @Override

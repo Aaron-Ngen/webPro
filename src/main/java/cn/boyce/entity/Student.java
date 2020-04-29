@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
+import java.io.Serializable;
 
 /**
  * @Author: Yuan Baiyu
@@ -16,9 +17,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 @Builder
 @Entity
 @Table(name = "student")
-public class Student {
+public class Student implements Serializable {
 
-    // private static final long serialVersionUID = -4813361542496370884L;
+    private static final long serialVersionUID = -4813361542496370884L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

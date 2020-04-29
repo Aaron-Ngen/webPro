@@ -2,14 +2,11 @@ package cn.boyce.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
 
 /**
  * @Author: Yuan Baiyu
@@ -43,7 +40,7 @@ public class ApiIdempotentAop {
 
     @Before("idempotentAop()")
     public void before(JoinPoint joinPoint) {
-        System.out.println("===========================================================");
+        log.info("===========================================================");
         startTime = System.currentTimeMillis();
 //        String requestString = "void";
 //

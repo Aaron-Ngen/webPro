@@ -20,11 +20,11 @@ public interface StudentDao extends JpaRepository<Student, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "update student set is_deleted = 0 where sno = ?1", nativeQuery = true)
+    @Query(value = "update student set is_deleted = 1 where sno = ?1", nativeQuery = true)
     int updateStudentById(@Param("sno") Integer sno);
 
     @Override
-    @Query(value = "select * from student where is_deleted = 0", nativeQuery = true)
+    @Query(value = "select * from student where is_deleted = 0 order by sno", nativeQuery = true)
     List<Student> findAll();
 
     @Override
