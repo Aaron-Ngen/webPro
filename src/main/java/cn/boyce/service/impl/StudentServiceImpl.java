@@ -58,7 +58,6 @@ public class StudentServiceImpl implements StudentService {
             }
             return Response.success(result);
         }
-
         Student student = (Student) redisTemplate.opsForHash().get(REDIS_KEY, sno.toString());
         if (null != student) {
             log.info("缓存获取！");

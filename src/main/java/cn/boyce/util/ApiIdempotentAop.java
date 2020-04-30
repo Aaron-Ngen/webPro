@@ -6,7 +6,10 @@ import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * @Author: Yuan Baiyu
@@ -31,6 +34,9 @@ public class ApiIdempotentAop {
     //     return null;
     // }
 
+    @Resource
+    RedisTemplate<String, Object> redisTemplate;
+
     private static long startTime;
 
     @Pointcut("@annotation(cn.boyce.util.IdempotentApi)")
@@ -42,6 +48,13 @@ public class ApiIdempotentAop {
     public void before(JoinPoint joinPoint) {
         log.info("===========================================================");
         startTime = System.currentTimeMillis();
+
+        log.info("KeySerializer :{}", redisTemplate.getKeySerializer());
+        log.info("ValueSerializer: {}", redisTemplate.getValueSerializer().toString());
+        log.info("ConnectionFactory :{}", redisTemplate.getConnectionFactory());
+        log.info("HashKeySerializer: {}", redisTemplate.getHashKeySerializer());
+        log.info("ValueSerializer: {}", redisTemplate.getValueSerializer());
+
 //        String requestString = "void";
 //
 //        Signature signature = joinPoint.getSignature();
