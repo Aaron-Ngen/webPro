@@ -67,4 +67,11 @@ public class Response<T> {
                 .build();
     }
 
+    public static Response fail(String message) {
+        return Response.builder()
+                .code(CODE_CLIENT_FAIL)
+                .message(message)
+                .build();
+    }
+
 }

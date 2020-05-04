@@ -1,2 +1,4 @@
 REDIS_KEY: student
 REDIS_TIME_OUT: 10
+idempotent_key: idempotent
+idempotent_time_out: 5

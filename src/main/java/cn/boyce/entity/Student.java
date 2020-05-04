@@ -35,7 +35,7 @@ public class Student implements Serializable {
 
     private int height;
 
-    private int wight;
+    private int weight;
 
     private int isDeleted;
 }

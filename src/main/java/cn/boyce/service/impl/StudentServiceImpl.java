@@ -43,35 +43,35 @@ public class StudentServiceImpl implements StudentService {
     public Response getStudentInfo(Integer sno) {
         List<Student> result = new ArrayList<>();
         if (null == sno) {
-            log.info("缓存获取！");
+//            log.info("缓存获取！");
             result = redisTemplate.opsForHash().entries(REDIS_KEY).values().stream()
                     .map(o -> (Student) o).collect(Collectors.toList());
             result.sort(Comparator.comparing(Student::getSno));
             if (result.size() == 0) {
-                log.info("缓存为空，数据库查询！");
+//                log.info("缓存为空，数据库查询！");
                 result = studentDao.findAll();
-                log.info("缓存写入！");
+//                log.info("缓存写入！");
                 redisTemplate.opsForHash().putAll(REDIS_KEY, result.stream()
                         .collect(Collectors.toMap(x -> x.getSno().toString(), x -> x)));
                 redisTemplate.expire(REDIS_KEY, REDIS_TIME_OUT, TimeUnit.MINUTES);
-                log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
+//                log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
             }
             return Response.success(result);
         }
         Student student = (Student) redisTemplate.opsForHash().get(REDIS_KEY, sno.toString());
         if (null != student) {
-            log.info("缓存获取！");
+//            log.info("缓存获取！");
             result.add(student);
         } else {
-            log.info("数据库查询！");
+//            log.info("数据库查询！");
             Optional<Student> stu = studentDao.findById(sno);
             if (stu.isPresent()) {
                 result.add(stu.get());
 
-                log.info("缓存写入！");
+//                log.info("缓存写入！");
                 redisTemplate.opsForHash().put(REDIS_KEY, sno.toString(), stu.get());
                 redisTemplate.expire(REDIS_KEY, REDIS_TIME_OUT, TimeUnit.MINUTES);
-                log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
+//                log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
             }
         }
         return Response.success(result);

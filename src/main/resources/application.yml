@@ -7,16 +7,16 @@ spring:
   jpa:
     database: default
     # 开发时显示 sql，部署到生产环境时设为 false
-    show-sql: true
+#    show-sql: true
     # 使用 mysql 方言
     database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
       # 下面两个配置对应 hibernate 的属性
       ddl-auto: update
-    properties:
-      hibernate:
-        # 格式化 sql 语句
-        format_sql: true
+#    properties:
+#      hibernate:
+#        # 格式化 sql 语句
+#        format_sql: true
     open-in-view: false
 
   redis:
@@ -30,12 +30,12 @@ spring:
     password: redispass
     lettuce.pool:
       # 连接池最大连接数（使用负值表示没有限制） 默认 8
-      max-active: 8
+      maxActive: 8
       # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
-      max-wait: -1
+      maxWait: -1
       # 连接池中的最大空闲连接 默认 8
-      max-idle: 8
+      maxIdle: 8
       # 连接池中的最小空闲连接 默认 0
-      min-idle: 0
+      minIdle: 0
 server:
   port: 8081
