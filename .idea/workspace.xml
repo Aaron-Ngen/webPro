@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b4ff5252-c1fa-441f-bfd1-6d0b72f572bf" name="Default Changelist" comment="feature: 重写redisTemplate的默认配置">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/boyce/util/ThreadContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/boyce/util/ThreadContextFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/boyce/BootStrapApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/boyce/BootStrapApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/boyce/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/boyce/controller/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/boyce/entity/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/boyce/entity/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/boyce/entity/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/boyce/entity/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/boyce/service/impl/StudentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/boyce/service/impl/StudentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/boyce/util/ApiIdempotentAop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/boyce/util/ApiAnnotationAop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/boyce/util/IdempotentApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/boyce/util/AopAnnotation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/conf.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/conf.yml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="module" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="d04425ef-c612-497f-9bbd-a98e24e25139" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../Dev-Envir/Maven/apache-maven-3.6.2" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1Txciu6hDASR7V2Ksf2lg0yVKOw" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="MyBatisLogPluginparameters" value="Parameters:" />
+    <property name="MyBatisLogPluginpreparing" value="Preparing:" />
+    <property name="MyBatisLogPluginrunning" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="ToolWindowFavorites.ShowToolbar" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="true" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="cn.boyce.service.impl" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="cn.boyce.dao" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Codes\User\webPro\src\main\java\cn\boyce\config" />
+    </key>
+  </component>
+  <component name="RestServicesNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="Found 4 services " type="fcff1e1b:RestServiceStructure$RootNode" />
+        </path>
+        <path>
+          <item name="Found 4 services " type="fcff1e1b:RestServiceStructure$RootNode" />
+          <item name="webTest" type="c588b436:RestServiceStructure$ProjectNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="RunManager">
+    <configuration name="BootStrapApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cn.boyce.BootStrapApplication" />
+      <module name="webPro" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BootStrapApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feature: Redis的缓存应用" />
+    <MESSAGE value="feature: Redis的缓存应用，fix+1" />
+    <MESSAGE value="feature: Redis的缓存和AOP的注解 应用" />
+    <MESSAGE value="feature：Redis缓存，注解AOP应用" />
+    <MESSAGE value="feature：fix 0.1" />
+    <MESSAGE value="bugfix: fix-0.2" />
+    <MESSAGE value="feature: AOP -&gt; The calling time of this interface" />
+    <MESSAGE value="feature: Code-Review" />
+    <MESSAGE value="feature: 重写redisTemplate的默认配置" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: 重写redisTemplate的默认配置" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="498" y="306" width="591" height="221" key="#Assign_Data_Sources" timestamp="1588045267656">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="498" y="306" width="591" height="221" key="#Assign_Data_Sources/0.0.1536.834@0.0.1536.834" timestamp="1588045267656" />
+    <state x="539" y="151" key="#HTTP_Proxy" timestamp="1588040561220">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="539" y="151" key="#HTTP_Proxy/0.0.1536.834@0.0.1536.834" timestamp="1588040561220" />
+    <state x="249" y="0" key="#Project_Structure" timestamp="1588220669559">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="249" y="0" key="#Project_Structure/0.0.1536.834@0.0.1536.834" timestamp="1588220669559" />
+    <state x="361" y="75" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588041095061">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="75" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1588041095061" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1588584859247">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1588584859247" />
+    <state x="499" y="192" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1587987230448">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="499" y="192" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1536.834@0.0.1536.834" timestamp="1587987230448" />
+    <state x="449" y="152" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1588298838740">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="449" y="152" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1536.834@0.0.1536.834" timestamp="1588298838740" />
+    <state x="534" y="245" key="#xdebugger.evaluate" timestamp="1588587410502">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="534" y="245" key="#xdebugger.evaluate/0.0.1536.834@0.0.1536.834" timestamp="1588587410502" />
+    <state width="361" height="294" key="Git.Branch.Popup" timestamp="1588058709352">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="361" height="294" key="Git.Branch.Popup/0.0.1536.834@0.0.1536.834" timestamp="1588058709352" />
+    <state width="1493" height="386" key="GridCell.Tab.0.bottom" timestamp="1588588521234">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="386" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1588588521234" />
+    <state width="1493" height="386" key="GridCell.Tab.0.center" timestamp="1588588521234">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="386" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1588588521234" />
+    <state width="1493" height="386" key="GridCell.Tab.0.left" timestamp="1588588521234">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="386" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1588588521234" />
+    <state width="1493" height="386" key="GridCell.Tab.0.right" timestamp="1588588521234">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="386" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1588588521234" />
+    <state width="1493" height="386" key="GridCell.Tab.1.bottom" timestamp="1588588521104">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="386" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1588588521104" />
+    <state width="1493" height="386" key="GridCell.Tab.1.center" timestamp="1588588521103">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="386" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1588588521103" />
+    <state width="1493" height="386" key="GridCell.Tab.1.left" timestamp="1588588521103">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="386" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1588588521103" />
+    <state width="1493" height="386" key="GridCell.Tab.1.right" timestamp="1588588521103">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="386" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1588588521103" />
+    <state x="136" y="109" width="996" height="715" key="SettingsEditor" timestamp="1588412337258">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="136" y="109" width="996" height="715" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1588412337258" />
+    <state width="619" height="446" key="SwitcherDM" timestamp="1588158459156">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="619" height="446" key="SwitcherDM/0.0.1536.834@0.0.1536.834" timestamp="1588158459156" />
+    <state x="592" y="113" key="VCS.ChangeListViewerDialog" timestamp="1588072610749">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="592" y="113" key="VCS.ChangeListViewerDialog/0.0.1536.834@0.0.1536.834" timestamp="1588072610749" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1588208544538">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1588208544538" />
+    <state x="858" y="153" width="622" height="634" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1588041344657">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="858" y="153" width="622" height="634" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1536.834@0.0.1536.834" timestamp="1588041344657" />
+    <state x="563" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588057792923">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="563" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1588057792923" />
+    <state x="540" y="183" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1587987256776">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="540" y="183" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.834@0.0.1536.834" timestamp="1587987256776" />
+    <state x="313" y="146" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1588587235361">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="313" y="146" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.834@0.0.1536.834" timestamp="1588587235361" />
+    <state width="520" height="594" key="documentation.popup.size" timestamp="1588510193053">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="520" height="594" key="documentation.popup.size/0.0.1536.834@0.0.1536.834" timestamp="1588510193053" />
+    <state x="468" y="151" width="600" height="532" key="find.popup" timestamp="1588214967211">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="468" y="151" width="600" height="532" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1588214967211" />
+    <state x="467" y="204" key="git4idea.merge.GitPullDialog" timestamp="1588073510039">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="467" y="204" key="git4idea.merge.GitPullDialog/0.0.1536.834@0.0.1536.834" timestamp="1588073510039" />
+    <state x="425" y="189" key="run.anything.popup" timestamp="1588158457264">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1588158457264" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1588140270701">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1588140270701" />
+  </component>
+</project>

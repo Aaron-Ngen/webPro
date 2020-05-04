@@ -1,2 +1,3 @@
 # webPro
- - [x] Redis缓存，注解AOP应用
+ - [x] AOP+Redis: 接口调用时间统计；
+ - [x] AOP+Redis: 接口幂等性；
