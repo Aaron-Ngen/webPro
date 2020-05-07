@@ -4,18 +4,3 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
-
-#    jpa:
-#      database: default
-#      # 开发时显示 sql，部署到生产环境时设为 false
-#      #    show-sql: true
-#      # 使用 mysql 方言
-#      database-platform: org.hibernate.dialect.MySQL5Dialect
-#      hibernate:
-#        # 下面两个配置对应 hibernate 的属性
-#        ddl-auto: update
-#      #    properties:
-#      #      hibernate:
-#      #        # 格式化 sql 语句
-#      #        format_sql: true
-#      open-in-view: false

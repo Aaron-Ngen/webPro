@@ -2,10 +2,9 @@ package cn.boyce.controller;
 
 import cn.boyce.entity.Response;
 import cn.boyce.entity.Student;
-import cn.boyce.service.impl.StudentServiceJpaImpl;
-import cn.boyce.service.impl.StudentServiceMpImpl;
 import cn.boyce.service.strategy.FactoryForStrategy;
-import cn.boyce.util.AopAnnotation;
+import cn.boyce.util.annotation.IdemAnnotation;
+import cn.boyce.util.annotation.ToolAnnotation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 
 /**
  * @Author: Yuan Baiyu
@@ -32,25 +29,29 @@ public class StudentController {
     FactoryForStrategy factoryForStrategy;
 
     @GetMapping("/get")
+    @IdemAnnotation
+    @ToolAnnotation
     public Response getStudentInfo(@RequestParam Integer sno,
                                    @RequestParam(required = false, defaultValue = "jpa") String impl) {
         return factoryForStrategy.getStrategy(impl).getStudentInfo(sno);
     }
 
     @PostMapping("/add")
-    @AopAnnotation
+    @IdemAnnotation
     public Response addStudent(@RequestBody Student student,
                                @RequestParam(required = false, defaultValue = "jpa") String impl) {
         return factoryForStrategy.getStrategy(impl).addStudent(student);
     }
 
     @DeleteMapping("/delete")
+    @IdemAnnotation
     public Response deleteStudent(@RequestParam Integer sno,
                                   @RequestParam(required = false, defaultValue = "jpa") String impl) {
         return factoryForStrategy.getStrategy(impl).deleteStudent(sno);
     }
 
     @PutMapping("/update")
+    @IdemAnnotation
     public Response updateStudent(@RequestBody Student student,
                                   @RequestParam(required = false, defaultValue = "jpa") String impl) {
         return factoryForStrategy.getStrategy(impl).updateStudent(student);

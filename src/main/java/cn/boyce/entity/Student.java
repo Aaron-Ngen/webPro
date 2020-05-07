@@ -1,10 +1,12 @@
 package cn.boyce.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @Author: Yuan Baiyu
@@ -38,4 +40,10 @@ public class Student implements Serializable {
     private int weight;
 
     private int isDeleted;
+
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", timezone = "GMT+8")
+    private Date createTime;
+
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", timezone = "GMT+8")
+    private Date updateTime;
 }

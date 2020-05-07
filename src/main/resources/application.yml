@@ -1,6 +1,15 @@
 spring:
   profiles:
-    active: dev
+    active: dev  # TODO:test的H2数据库启动报错
+
+  # 是否生成ddl语句
+  jpa:
+    generate-ddl: false
+  # 是否打印sql语句
+    show-sql: true
+  # 自动生成ddl，由于指定了具体的ddl，此处设置为none
+    hibernate:
+      ddl-auto: none
 
   redis:
     # Redis数据库索引（默认为0）

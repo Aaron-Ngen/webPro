@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -80,6 +81,7 @@ public class StudentServiceJpaImpl implements StudentService {
     @Override
     public Response addStudent(Student student) {
         student.setIsDeleted(0);
+        student.setCreateTime(new Date());
         log.info("插入数据库！");
         studentDao.saveAndFlush(student);
 
@@ -106,6 +108,7 @@ public class StudentServiceJpaImpl implements StudentService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Response updateStudent(Student student) {
+        student.setUpdateTime(new Date());
         log.info("数据库插入数据！");
         studentDao.saveAndFlush(student);
 

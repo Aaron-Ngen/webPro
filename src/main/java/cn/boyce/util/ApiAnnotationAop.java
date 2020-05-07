@@ -11,6 +11,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -33,19 +34,34 @@ public class ApiAnnotationAop {
     @Value("${idempotent_time_out}")
     private long IDEMPOTENT_TIME_OUT;
 
-    @Pointcut("@annotation(cn.boyce.util.AopAnnotation)")
-    public void AopAnnotation() {
+    @Pointcut("@annotation(cn.boyce.util.annotation.ToolAnnotation)")
+    public void ToolAnnotation() {
 
+    }
+
+    @Pointcut("@annotation(cn.boyce.util.annotation.IdemAnnotation)")
+    public void IdemAnnotation() {
+
+    }
+
+    @Around("ToolAnnotation()")
+    public Object toolInterface(ProceedingJoinPoint joinPoint) throws Throwable {
+        log.info("tool start: {}", new Date());
+        threadLocal.set(System.currentTimeMillis());
+        Object result = joinPoint.proceed();
+        log.info("{}", System.currentTimeMillis() - threadLocal.get());
+        log.info("tool end: {}", new Date());
+        return result;
     }
 
     /**
      * 方法缓存，缓存当前线程的变量
      */
-    @Around("AopAnnotation()")
+    @Around("IdemAnnotation()")
     public Object threadCache(ProceedingJoinPoint joinPoint) throws Throwable {
-        threadLocal.set(System.currentTimeMillis());
+        log.info("idem start: {}", new Date());
         Object result = doCache(joinPoint);
-        log.info("{}", System.currentTimeMillis() - threadLocal.get());
+        log.info("idem end: {}", new Date());
         return result;
     }
 

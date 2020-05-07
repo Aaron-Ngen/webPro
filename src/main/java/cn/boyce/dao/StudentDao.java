@@ -20,7 +20,7 @@ public interface StudentDao extends JpaRepository<Student, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "update student set is_deleted = 1 where sno = ?1", nativeQuery = true)
+    @Query(value = "update student set is_deleted = 1, update_time = NOW() where sno = ?1", nativeQuery = true)
     int updateStudentById(@Param("sno") Integer sno);
 
     @Override
