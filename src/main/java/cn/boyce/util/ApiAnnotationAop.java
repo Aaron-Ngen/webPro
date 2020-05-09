@@ -2,6 +2,7 @@ package cn.boyce.util;
 
 import cn.boyce.entity.Response;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.Random;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -74,21 +77,20 @@ public class ApiAnnotationAop {
     }
 
     /**
-     * 获取值
+     * 校验
      */
     private Object getValue(String key, ProceedingJoinPoint joinPoint) throws Throwable {
-        if (null != redisTemplate.opsForValue().get(key)) {
-            return Response.fail("当前操作已完成！");
+        synchronized (this) {
+            if (null != redisTemplate.opsForValue().get(key)) {
+                return Response.fail("当前操作已完成！");
+            }
+            redisTemplate.opsForValue().set(key, "幂等性接口", IDEMPOTENT_TIME_OUT, TimeUnit.SECONDS);
         }
-        Object result = joinPoint.proceed();
-        if (result != null) {
-            redisTemplate.opsForValue().set(key, result, IDEMPOTENT_TIME_OUT, TimeUnit.SECONDS);
-        }
-        return result;
+        return joinPoint.proceed();
     }
 
     /**
-     * 获取线程变量缓存key ， key结构 : 类名+方法名+参数列表
+     * key结构 : 类名+方法名+参数列表
      */
     private String getKey(ProceedingJoinPoint joinPoint) {
         StringBuilder keyBuilder = new StringBuilder();
