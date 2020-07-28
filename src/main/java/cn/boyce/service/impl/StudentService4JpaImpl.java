@@ -34,11 +34,11 @@ public class StudentService4JpaImpl implements StudentService {
     @Resource
     RedisTemplate<String, Object> redisTemplate;
 
-    @Value("${REDIS_KEY}")
+    @Value("${redis-key}")
     private String REDIS_KEY;
 
-    @Value("${REDIS_TIME_OUT}")
-    private Integer REDIS_TIME_OUT;
+    @Value("${redis-out-time}")
+    private Integer REDIS_OUT_TIME;
 
     @Override
     public Response getStudentInfo(Integer sno) {
@@ -54,7 +54,7 @@ public class StudentService4JpaImpl implements StudentService {
 //                log.info("缓存写入！");
                 redisTemplate.opsForHash().putAll(REDIS_KEY, result.stream()
                         .collect(Collectors.toMap(x -> x.getSno().toString(), x -> x)));
-                redisTemplate.expire(REDIS_KEY, REDIS_TIME_OUT, TimeUnit.MINUTES);
+                redisTemplate.expire(REDIS_KEY, REDIS_OUT_TIME, TimeUnit.MINUTES);
 //                log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
             }
             return Response.success(result);
@@ -71,7 +71,7 @@ public class StudentService4JpaImpl implements StudentService {
 
 //                log.info("缓存写入！");
                 redisTemplate.opsForHash().put(REDIS_KEY, sno.toString(), stu.get());
-                redisTemplate.expire(REDIS_KEY, REDIS_TIME_OUT, TimeUnit.MINUTES);
+                redisTemplate.expire(REDIS_KEY, REDIS_OUT_TIME, TimeUnit.MINUTES);
 //                log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
             }
         }
@@ -87,7 +87,7 @@ public class StudentService4JpaImpl implements StudentService {
 
         log.info("写入缓存！");
         redisTemplate.opsForHash().put(REDIS_KEY, student.getSno().toString(), student);
-        redisTemplate.expire(REDIS_KEY, REDIS_TIME_OUT, TimeUnit.MINUTES);
+        redisTemplate.expire(REDIS_KEY, REDIS_OUT_TIME, TimeUnit.MINUTES);
         log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
         return Response.successWithoutData("信息添加成功！");
     }
@@ -114,7 +114,7 @@ public class StudentService4JpaImpl implements StudentService {
 
         log.info("缓存更新！");
         redisTemplate.opsForHash().put(REDIS_KEY, student.getSno().toString(), student);
-        redisTemplate.expire(REDIS_KEY, REDIS_TIME_OUT, TimeUnit.MINUTES);
+        redisTemplate.expire(REDIS_KEY, REDIS_OUT_TIME, TimeUnit.MINUTES);
         log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
         return Response.successWithoutData("信息更新成功！");
     }

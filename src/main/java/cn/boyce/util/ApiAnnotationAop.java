@@ -28,10 +28,10 @@ public class ApiAnnotationAop {
 
     private static final ThreadLocal<Long> threadLocal = new ThreadLocal<>();
 
-    @Value("${idempotent_key}")
+    @Value("${idempotent-key}")
     private String IDEMPOTENT_KEY;
 
-    @Value("${idempotent_time_out}")
+    @Value("${idempotent-out-time}")
     private long IDEMPOTENT_TIME_OUT;
 
     @Pointcut("@annotation(cn.boyce.util.annotation.ToolAnnotation)")

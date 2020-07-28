@@ -7,6 +7,8 @@ import cn.boyce.util.annotation.IdemAnnotation;
 import cn.boyce.util.annotation.ToolAnnotation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,32 +30,31 @@ public class StudentController {
     @Autowired
     Factory4Strategy factory4Strategy;
 
+    @Value("${strategy-4impl}")
+    private String SERVICE4IMPL;
+
     @GetMapping()
     @ToolAnnotation
-    public Response getStudentInfo(@RequestParam Integer sno,
-                                   @RequestParam(required = false, defaultValue = "jpa") String impl) {
-        return factory4Strategy.getStrategy(impl).getStudentInfo(sno);
+    public Response getStudentInfo(@RequestParam Integer sno) {
+        return factory4Strategy.getStrategy(SERVICE4IMPL).getStudentInfo(sno);
     }
 
     @PostMapping()
     @IdemAnnotation
-    public Response addStudent(@RequestBody Student student,
-                               @RequestParam(required = false, defaultValue = "jpa") String impl) {
-        return factory4Strategy.getStrategy(impl).addStudent(student);
+    public Response addStudent(@RequestBody Student student) {
+        return factory4Strategy.getStrategy(SERVICE4IMPL).addStudent(student);
     }
 
-    @DeleteMapping("")
+    @DeleteMapping()
     @IdemAnnotation
-    public Response deleteStudent(@RequestParam Integer sno,
-                                  @RequestParam(required = false, defaultValue = "jpa") String impl) {
-        return factory4Strategy.getStrategy(impl).deleteStudent(sno);
+    public Response deleteStudent(@RequestParam Integer sno) {
+        return factory4Strategy.getStrategy(SERVICE4IMPL).deleteStudent(sno);
     }
 
-    @PutMapping("")
+    @PutMapping()
     @IdemAnnotation
-    public Response updateStudent(@RequestBody Student student,
-                                  @RequestParam(required = false, defaultValue = "jpa") String impl) {
-        return factory4Strategy.getStrategy(impl).updateStudent(student);
+    public Response updateStudent(@RequestBody Student student) {
+        return factory4Strategy.getStrategy(SERVICE4IMPL).updateStudent(student);
     }
 
 }

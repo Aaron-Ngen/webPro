@@ -1,4 +1,22 @@
-REDIS_KEY: student
-REDIS_TIME_OUT: 10
-idempotent_key: idempotent
-idempotent_time_out: 10
+#user:
+#  # Redis
+#  redis:
+#    key: student
+#    out-time: 10
+#
+#  # 幂等性
+#  idempotent:
+#    key: idempotent
+#    out-time: 10
+#
+#  # Service 策略
+#  strategy:
+#    4impl: jpa
+
+redis-key: student
+redis-out-time: 10
+
+idempotent-key: idempotent
+idempotent-out-time: 10
+
+strategy-4impl: jpa
