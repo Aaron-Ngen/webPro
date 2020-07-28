@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -36,21 +38,24 @@ public class ApiAnnotationAop {
 
     @Pointcut("@annotation(cn.boyce.util.annotation.ToolAnnotation)")
     public void ToolAnnotation() {
-
     }
 
     @Pointcut("@annotation(cn.boyce.util.annotation.IdemAnnotation)")
     public void IdemAnnotation() {
+    }
 
+    private String formatDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(new Date());
     }
 
     @Around("ToolAnnotation()")
     public Object toolInterface(ProceedingJoinPoint joinPoint) throws Throwable {
-        log.info("tool start: {}", new Date());
+        log.info("tool start: {}", formatDate());
         threadLocal.set(System.currentTimeMillis());
         Object result = joinPoint.proceed();
         log.info("{}", System.currentTimeMillis() - threadLocal.get());
-        log.info("tool end: {}", new Date());
+        log.info("tool end: {}", formatDate());
         return result;
     }
 
@@ -59,9 +64,9 @@ public class ApiAnnotationAop {
      */
     @Around("IdemAnnotation()")
     public Object threadCache(ProceedingJoinPoint joinPoint) throws Throwable {
-        log.info("idem start: {}", new Date());
+        log.info("idem start: {}", formatDate());
         Object result = doCache(joinPoint);
-        log.info("idem end: {}", new Date());
+        log.info("idem end: {}", formatDate());
         return result;
     }
 
