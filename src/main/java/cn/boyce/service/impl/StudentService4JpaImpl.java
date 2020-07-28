@@ -1,11 +1,11 @@
 package cn.boyce.service.impl;
 
+import cn.boyce.dao.StudentDao;
 import cn.boyce.entity.Response;
 import cn.boyce.entity.Student;
-import cn.boyce.mapper.StudentMapper;
 import cn.boyce.service.StudentService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -13,19 +13,23 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * @Author: Yuan Baiyu
  * @Date: 2019/11/23
  **/
-@Service(value = "mp")
+@Service(value = "jpa")
 @Slf4j
-public class StudentServiceMpImpl implements StudentService {
+public class StudentService4JpaImpl implements StudentService {
 
-    @Resource
-    private StudentMapper studentMapper;
+    @Autowired
+    StudentDao studentDao;
 
     @Resource
     RedisTemplate<String, Object> redisTemplate;
@@ -38,20 +42,48 @@ public class StudentServiceMpImpl implements StudentService {
 
     @Override
     public Response getStudentInfo(Integer sno) {
-        List<Student> query = new ArrayList<>();
+        List<Student> result = new ArrayList<>();
         if (null == sno) {
-            return Response.success(studentMapper.selectList(null));
+//            log.info("缓存获取！");
+            result = redisTemplate.opsForHash().entries(REDIS_KEY).values().stream()
+                    .map(o -> (Student) o).collect(Collectors.toList());
+            result.sort(Comparator.comparing(Student::getSno));
+            if (result.size() == 0) {
+//                log.info("缓存为空，数据库查询！");
+                result = studentDao.findAll();
+//                log.info("缓存写入！");
+                redisTemplate.opsForHash().putAll(REDIS_KEY, result.stream()
+                        .collect(Collectors.toMap(x -> x.getSno().toString(), x -> x)));
+                redisTemplate.expire(REDIS_KEY, REDIS_TIME_OUT, TimeUnit.MINUTES);
+//                log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
+            }
+            return Response.success(result);
         }
-        query.add(Student.builder().sno(sno).build());
-        Student student = studentMapper.selectOne(new QueryWrapper<Student>().lambda().eq(Student::getSno, sno));
-        return Response.success(student);
+        Student student = (Student) redisTemplate.opsForHash().get(REDIS_KEY, sno.toString());
+        if (null != student) {
+//            log.info("缓存获取！");
+            result.add(student);
+        } else {
+//            log.info("数据库查询！");
+            Optional<Student> stu = studentDao.findById(sno);
+            if (stu.isPresent()) {
+                result.add(stu.get());
+
+//                log.info("缓存写入！");
+                redisTemplate.opsForHash().put(REDIS_KEY, sno.toString(), stu.get());
+                redisTemplate.expire(REDIS_KEY, REDIS_TIME_OUT, TimeUnit.MINUTES);
+//                log.info("过期时间：{}", redisTemplate.getExpire(REDIS_KEY));
+            }
+        }
+        return Response.success(result);
     }
 
     @Override
     public Response addStudent(Student student) {
         student.setIsDeleted(0);
+        student.setCreateTime(new Date());
         log.info("插入数据库！");
-        //studentDao.saveAndFlush(student);
+        studentDao.saveAndFlush(student);
 
         log.info("写入缓存！");
         redisTemplate.opsForHash().put(REDIS_KEY, student.getSno().toString(), student);
@@ -63,7 +95,7 @@ public class StudentServiceMpImpl implements StudentService {
     @Override
     public Response deleteStudent(Integer sno) {
         log.info("数据库删除数据！");
-        int row = 1; //studentDao.updateStudentById(sno);
+        int row = studentDao.updateStudentById(sno);
         if (row != 1) {
             return Response.SERVER_FAIL;
         }
@@ -76,8 +108,9 @@ public class StudentServiceMpImpl implements StudentService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Response updateStudent(Student student) {
+        student.setUpdateTime(new Date());
         log.info("数据库插入数据！");
-//        studentDao.saveAndFlush(student);
+        studentDao.saveAndFlush(student);
 
         log.info("缓存更新！");
         redisTemplate.opsForHash().put(REDIS_KEY, student.getSno().toString(), student);

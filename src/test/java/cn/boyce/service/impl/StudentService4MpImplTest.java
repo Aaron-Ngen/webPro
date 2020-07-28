@@ -3,6 +3,7 @@ package cn.boyce.service.impl;
 
 import cn.boyce.entity.Student;
 import cn.boyce.mapper.StudentMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +19,7 @@ import java.util.List;
  **/
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class StudentServiceMpImplTest {
+public class StudentService4MpImplTest {
 
     @Resource
     private StudentMapper studentMapper;
@@ -31,4 +32,21 @@ public class StudentServiceMpImplTest {
         studentList.forEach(System.out::println);
     }
 
+    @Test
+    public void testSelect1() {
+        List<Student> list = studentMapper.getStudentList(null);
+        list.forEach(System.out::println);
+    }
+
+    @Test
+    public void testSelectByName() {
+        List<Student> list = studentMapper.getStudentByName("袁");
+        list.forEach(System.out::println);
+    }
+
+    @Test
+    public void testPageSelect() {
+        List<Student> list = studentMapper.getPageStudent(1);
+        System.out.println(list);
+    }
 }

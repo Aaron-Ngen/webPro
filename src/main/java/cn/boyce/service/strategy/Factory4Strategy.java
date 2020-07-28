@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @Date: 2020/5/7 11:25
  **/
 @Service
-public class FactoryForStrategy {
+public class Factory4Strategy {
 
     @Autowired
     Map<String, StudentService> strategy = new ConcurrentHashMap<>(3);
