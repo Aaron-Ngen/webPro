@@ -56,6 +56,7 @@ public class ApiAnnotationAop {
         Object result = joinPoint.proceed();
         log.info("{}", System.currentTimeMillis() - threadLocal.get());
         log.info("tool end: {}", formatDate());
+        log.info("============================");
         return result;
     }
 
@@ -67,6 +68,7 @@ public class ApiAnnotationAop {
         log.info("idem start: {}", formatDate());
         Object result = doCache(joinPoint);
         log.info("idem end: {}", formatDate());
+        log.info("============================");
         return result;
     }
 
