@@ -1,6 +1,8 @@
 package cn.boyce.dao;
 
 import cn.boyce.entity.Student;
+import org.hibernate.annotations.Where;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -24,12 +26,15 @@ public interface StudentDao extends JpaRepository<Student, Integer> {
     int updateStudentById(@Param("sno") Integer sno);
 
     @Override
-    @Query(value = "select * from student where is_deleted = 0 order by sno", nativeQuery = true)
-    List<Student> findAll();
+    // @Query(value = "select * from student where is_deleted = 0 order by sno", nativeQuery = true)
+    @Where(clause = "is_deleted = 0")
+    List<Student> findAll(Sort sort);
 
     @Override
-    @Query(value = "select * from student where is_deleted = 0 and sno = ?1", nativeQuery = true)
-    Optional<Student> findById(@Param("sno") Integer sno);
+    // @Query(value = "select * from student where is_deleted = 0 and sno = ?1", nativeQuery = true)
+    // Optional<Student> findById(@Param("sno") Integer sno);
+    @Where(clause = "is_deleted = 0 and sno = #{sno}")
+    Optional<Student> findById(Integer sno);
 
 }
 

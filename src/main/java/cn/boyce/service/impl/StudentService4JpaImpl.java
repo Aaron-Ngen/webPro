@@ -7,6 +7,7 @@ import cn.boyce.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,7 +51,8 @@ public class StudentService4JpaImpl implements StudentService {
             result.sort(Comparator.comparing(Student::getSno));
             if (result.size() == 0) {
 //                log.info("缓存为空，数据库查询！");
-                result = studentDao.findAll();
+                Sort sort = new Sort(Sort.Direction.ASC, "sno");
+                result = studentDao.findAll(sort);
 //                log.info("缓存写入！");
                 redisTemplate.opsForHash().putAll(REDIS_KEY, result.stream()
                         .collect(Collectors.toMap(x -> x.getSno().toString(), x -> x)));
